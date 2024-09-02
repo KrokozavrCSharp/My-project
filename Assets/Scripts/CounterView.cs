@@ -7,11 +7,6 @@ public class CounterView : MonoBehaviour
 
     [SerializeField] private Counter _counter;
 
-    private void Update()
-    {
-        DisplayCountdown(_counter.Points);
-    }
-
     private void OnEnable()
     {
         _counter.PointsChange += DisplayCountdown;
