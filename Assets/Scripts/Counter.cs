@@ -5,14 +5,13 @@ using UnityEngine;
 public class Counter : MonoBehaviour
 {
     private int _points;
-
     private float _declay = 0.5f;
+    private KeyCode _leftMouseButton = KeyCode.Mouse0;
+    private Coroutine _coroutine;
 
-    private bool _isMouseClick;
+    public event Action<int> PointsChanged;
 
     public int Points => _points;
-
-    public event Action<int> PointsChange;
 
     private void Start()
     {
@@ -23,7 +22,7 @@ public class Counter : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKey(KeyCode.Mouse0))
+        if (Input.GetMouseButtonDown(0))
         {
             Click();
         }
@@ -33,11 +32,11 @@ public class Counter : MonoBehaviour
     {
         var wait = new WaitForSeconds(_declay);
 
-        while (_isMouseClick)
+        while (true)
         {
             _points++;
 
-            PointsChange?.Invoke(_points);
+            PointsChanged?.Invoke(_points);
 
             yield return wait;
         }
@@ -45,15 +44,14 @@ public class Counter : MonoBehaviour
 
     private void Click()
     {
-        if(_isMouseClick==false)
+        if (_coroutine==null)
         {
-            _isMouseClick = true;
-            StartCoroutine(Counting());
+            _coroutine = StartCoroutine(Counting());
         }
         else
         {
-            _isMouseClick = false;
-            StopCoroutine(Counting());
+            StopCoroutine(_coroutine);
+            _coroutine = null;
         }
     }
 }
