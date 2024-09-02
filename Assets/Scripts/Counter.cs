@@ -6,12 +6,10 @@ public class Counter : MonoBehaviour
 {
     private int _points;
     private float _declay = 0.5f;
-    private bool _isActivateCoroutine;
-    private KeyCode _leftMouseButton=KeyCode.Mouse0;
     private Coroutine _coroutine;
-    
+
     public event Action<int> PointsChanged;
-    
+
     public int Points => _points;
 
     private void Start()
@@ -23,7 +21,7 @@ public class Counter : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKey(_leftMouseButton))
+        if (Input.GetMouseButtonDown(0))
         {
             Click();
         }
@@ -33,11 +31,11 @@ public class Counter : MonoBehaviour
     {
         var wait = new WaitForSeconds(_declay);
 
-        while (_isActivateCoroutine)
+        while (true)
         {
             _points++;
 
-            PointsChange?.Invoke(_points);
+            PointsChanged?.Invoke(_points);
 
             yield return wait;
         }
@@ -45,15 +43,14 @@ public class Counter : MonoBehaviour
 
     private void Click()
     {
-        if(_isActivateCoroutine==false)
+        if (_coroutine==null)
         {
-            _isActivateCoroutine = true;
-            _coroutine=StartCoroutine(Counting());
+            _coroutine = StartCoroutine(Counting());
         }
         else
         {
-            _isActivateCoroutine = false;
             StopCoroutine(_coroutine);
+            _coroutine = null;
         }
     }
 }
