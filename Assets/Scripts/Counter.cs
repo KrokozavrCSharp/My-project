@@ -6,7 +6,6 @@ public class Counter : MonoBehaviour
 {
     private int _points;
     private float _declay = 0.5f;
-    private KeyCode _leftMouseButton = KeyCode.Mouse0;
     private Coroutine _coroutine;
 
     public event Action<int> PointsChanged;
@@ -44,7 +43,7 @@ public class Counter : MonoBehaviour
 
     private void Click()
     {
-        if (_coroutine==null)
+        if (_coroutine == null)
         {
             _coroutine = StartCoroutine(Counting());
         }

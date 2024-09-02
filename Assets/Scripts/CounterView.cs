@@ -27,4 +27,3 @@ public class CounterView : MonoBehaviour
         _text.text = number.ToString();
     }
 }
-    
