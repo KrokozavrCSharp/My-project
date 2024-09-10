@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -6,35 +5,29 @@ public class Explosion : MonoBehaviour
 {
     [SerializeField] private float _radius;
     [SerializeField] private float _force;
-    [SerializeField] private Cube _cube;
-    
-    public event Action <Cube> Destroyed;
 
-    private void OnMouseUpAsButton()
+    private Spawner _spawner;
+
+    private void Awake()
     {
-        Destroyed?.Invoke(_cube);
-        Destroy(gameObject);
-        Explode();
+        _spawner= GetComponent<Spawner>();
     }
 
-    private void Explode()
+    private void OnEnable()
     {
-        foreach(Rigidbody explodableObject in GetExplodableObject())
-            explodableObject.AddExplosionForce(_force, transform.position, _radius);
+        _spawner.CreateNewCubs += Explode;
     }
 
-    private List<Rigidbody> GetExplodableObject()
+    private void OnDisable()
     {
-        Collider [] hits=Physics.OverlapSphere(transform.position, _radius);
+        _spawner.CreateNewCubs -= Explode;
+    }
 
-        List<Rigidbody> boxes=new List<Rigidbody>();
-
-        foreach (Collider hit in hits)
+    private void Explode(List<Cube> cubes)
+    {
+        foreach (Cube explodablecube in cubes)
         {
-            if(hit.attachedRigidbody!=null)
-                boxes.Add(hit.attachedRigidbody);
+            explodablecube.GetComponent<Rigidbody>().AddExplosionForce(_force, transform.position, _radius);
         }
-
-        return boxes;
     }
 }

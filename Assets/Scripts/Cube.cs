@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody))]
@@ -7,22 +8,40 @@ public class Cube : MonoBehaviour
 {
     private int _chanceDivision = 100;
     private Material _material;
-    private Rigidbody _rigidbody;
+
+    public event Action <Cube> Activate;
 
     public int ChanceDivision => _chanceDivision;
 
     private void Awake()
     {
-        _rigidbody= GetComponent<Rigidbody>();
-        _material= GetComponent<Renderer>().material;
+        _material = GetComponent<Renderer>().material;
     }
 
-    public void Init()
+    private void OnMouseUpAsButton()
+    {
+        int minNumber = 0;
+        int maxNumber = 100;
+
+        int chance = UnityEngine.Random.Range(minNumber, maxNumber + 1);
+
+        if (chance < _chanceDivision)
+        {
+            Activate?.Invoke(this);
+            Destroy(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
+
+    public void Init(int chanceDivision)
     {
         int divider = 2;
 
-        _chanceDivision/=divider;
-        transform.localScale /=divider;
-        _material.color = Random.ColorHSV();
+        _chanceDivision = chanceDivision;
+        transform.localScale /= divider;
+        _material.color = UnityEngine.Random.ColorHSV();
     }
 }

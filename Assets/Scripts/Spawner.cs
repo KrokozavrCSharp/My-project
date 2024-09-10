@@ -1,35 +1,37 @@
+using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 public class Spawner : MonoBehaviour
 {
-    [SerializeField] private GameObject _gameObject;
-    [SerializeField] private Explosion _explosion;
     [SerializeField] private Cube _cube;
 
+    public event Action <List<Cube>>CreateNewCubs;
 
     private int _minCountBoxes = 2;
     private int _maxCountBoxes = 6;
 
-    private void OnEnable()
-    {
-        _explosion.Destroyed += CreateCube;
-    }
+    private void OnEnable() => _cube.Activate += CreateCubs;
 
-    private void OnDisable()
-    {
-        _explosion.Destroyed -= CreateCube;
-    }
+    private void OnDisable() => _cube.Activate -= CreateCubs;
 
-    private void CreateCube(Cube cube)
+    public void CreateCubs(Cube cube)
     {
-        int countBoxes = Random.Range(_minCountBoxes, _maxCountBoxes + 1);
+        List<Cube> cubeList=new List<Cube>();
+
+        int divider = 2;
+
+        int countBoxes = UnityEngine.Random.Range(_minCountBoxes, _maxCountBoxes + 1);
 
         for (int i = 0; i < countBoxes; i++)
         {
-            Cube newCube;
+            Cube newCube= Instantiate(cube, transform.position, transform.rotation);
 
-            newCube = Instantiate(cube, transform.position, transform.rotation);
-            newCube.Init();
+            newCube.Init(cube.ChanceDivision/ divider);
+
+            cubeList.Add(newCube);
         }
+
+            CreateNewCubs?.Invoke(cubeList);
     }
 }
