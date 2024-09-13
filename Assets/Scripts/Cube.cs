@@ -10,6 +10,7 @@ public class Cube : MonoBehaviour
     private Material _material;
 
     public event Action <Cube> Activate;
+    public event Action <Cube> Destroyed;
 
     public int ChanceDivision => _chanceDivision;
 
@@ -32,6 +33,7 @@ public class Cube : MonoBehaviour
         }
         else
         {
+            Destroyed?.Invoke(this);
             Destroy(gameObject);
         }
     }

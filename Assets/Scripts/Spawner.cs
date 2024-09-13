@@ -6,8 +6,6 @@ public class Spawner : MonoBehaviour
 {
     [SerializeField] private Cube _cube;
 
-    public event Action <List<Cube>>CreateNewCubs;
-
     private int _minCountBoxes = 2;
     private int _maxCountBoxes = 6;
 
@@ -17,8 +15,6 @@ public class Spawner : MonoBehaviour
 
     public void CreateCubs(Cube cube)
     {
-        List<Cube> cubeList=new List<Cube>();
-
         int divider = 2;
 
         int countBoxes = UnityEngine.Random.Range(_minCountBoxes, _maxCountBoxes + 1);
@@ -28,10 +24,6 @@ public class Spawner : MonoBehaviour
             Cube newCube= Instantiate(cube, transform.position, transform.rotation);
 
             newCube.Init(cube.ChanceDivision/ divider);
-
-            cubeList.Add(newCube);
         }
-
-            CreateNewCubs?.Invoke(cubeList);
     }
 }
