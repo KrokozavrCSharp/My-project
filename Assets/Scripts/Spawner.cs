@@ -1,29 +1,62 @@
 using System;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Pool;
 
 public class Spawner : MonoBehaviour
 {
-    [SerializeField] private Cube _cube;
+    [SerializeField] private GameObject _prefab;
+    [SerializeField] private GameObject _startPoint;
+    [SerializeField] private Vector3 _minPosition;
+    [SerializeField] private Vector3 _maxPosition;
 
-    private int _minCountBoxes = 2;
-    private int _maxCountBoxes = 6;
+    private int _defaultCapacity = 100;
+    private int _maxSize = 100;
+    private float _time = 0.0f;
+    private float _repeate = 1f;
 
-    private void OnEnable() => _cube.Activate += CreateCubs;
 
-    private void OnDisable() => _cube.Activate -= CreateCubs;
+    private ObjectPool<GameObject> _pool;
 
-    public void CreateCubs(Cube cube)
+    private void Awake()
     {
-        int divider = 2;
+        _pool = new ObjectPool<GameObject>(
+            createFunc: () => Instantiate(_prefab),
+            actionOnGet: (obj)=> ActionOnGet(obj),
+            actionOnRelease: (obj)=>obj.SetActive(false),
+            actionOnDestroy: (obj)=> Destroy(obj),
+            collectionCheck:true,
+            defaultCapacity: _defaultCapacity,
+            maxSize:_maxSize
+            ) ;
 
-        int countBoxes = UnityEngine.Random.Range(_minCountBoxes, _maxCountBoxes + 1);
+        _prefab.GetComponent<Cube>();  
+    }
 
-        for (int i = 0; i < countBoxes; i++)
-        {
-            Cube newCube= Instantiate(cube, transform.position, transform.rotation);
+    private void Start()
+    {
+        InvokeRepeating(nameof(Getobject), _time, _repeate);
+    }
 
-            newCube.Init(cube.ChanceDivision/ divider);
-        }
+    private void ActionOnGet(GameObject obj)
+    {
+        obj.transform.position= GetPosition();
+        obj.GetComponent<Rigidbody>().velocity = Vector3.zero;
+        obj.SetActive(true);
+    }
+
+    private void Getobject()
+    {
+        _pool.Get();
+    }
+
+    private Vector3 GetPosition()
+    {
+        Vector3 randomPosition = new Vector3(
+            UnityEngine.Random.Range(_minPosition.x, _maxPosition.x),
+            _maxPosition.y,
+            UnityEngine.Random.Range(_minPosition.z, _maxPosition.z)
+            );
+
+        return randomPosition;
     }
 }

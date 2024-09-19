@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody))]
@@ -6,44 +5,40 @@ using UnityEngine;
 
 public class Cube : MonoBehaviour
 {
-    private int _chanceDivision = 100;
     private Material _material;
-
-    public event Action <Cube> Activate;
-    public event Action <Cube> Destroyed;
-
-    public int ChanceDivision => _chanceDivision;
+    private bool _isChangeColor = false;
+    private int _delay;
 
     private void Awake()
     {
         _material = GetComponent<Renderer>().material;
     }
 
-    private void OnMouseUpAsButton()
+    private void OnCollisionEnter(Collision collision)
     {
-        int minNumber = 0;
-        int maxNumber = 100;
-
-        int chance = UnityEngine.Random.Range(minNumber, maxNumber + 1);
-
-        if (chance < _chanceDivision)
+        if (_isChangeColor == false)
         {
-            Activate?.Invoke(this);
-            Destroy(gameObject);
+            ChangeColor();
+            _isChangeColor = true;
         }
-        else
-        {
-            Destroyed?.Invoke(this);
-            Destroy(gameObject);
-        }
+
+        Destroy(gameObject, GetRandomNumber(_delay));
     }
 
-    public void Init(int chanceDivision)
+    private void ChangeColor()
     {
-        int divider = 2;
+        _material.color = Random.ColorHSV();
+    }
 
-        _chanceDivision = chanceDivision;
-        transform.localScale /= divider;
-        _material.color = UnityEngine.Random.ColorHSV();
+    private  int GetRandomNumber(int delay)
+    {
+        int minNumber = 2;
+        int maxNumber = 6;
+
+        int randomNumber = Random.Range(minNumber, maxNumber);
+
+        delay = randomNumber;
+
+        return delay;
     }
 }
