@@ -1,52 +1,69 @@
 using System;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.Pool;
 
 public class Spawner : MonoBehaviour
 {
-    [SerializeField] private GameObject _prefab;
-    [SerializeField] private GameObject _startPoint;
+    [SerializeField] private Cube _prefab;
     [SerializeField] private Vector3 _minPosition;
     [SerializeField] private Vector3 _maxPosition;
 
-    private int _defaultCapacity = 100;
+    private int _defaultCapacity = 300;
     private int _maxSize = 100;
-    private float _time = 0.0f;
     private float _repeate = 1f;
 
-
-    private ObjectPool<GameObject> _pool;
+    private ObjectPool<Cube> _pool;
 
     private void Awake()
     {
-        _pool = new ObjectPool<GameObject>(
+        _pool = new ObjectPool<Cube>(
             createFunc: () => Instantiate(_prefab),
-            actionOnGet: (obj)=> ActionOnGet(obj),
-            actionOnRelease: (obj)=>obj.SetActive(false),
-            actionOnDestroy: (obj)=> Destroy(obj),
-            collectionCheck:true,
+            actionOnGet: (cube) => OnGet(cube),
+            actionOnRelease: (cube) => OnRelease(cube),
+            actionOnDestroy: (cube) => Destroy(cube),
+            collectionCheck: true,
             defaultCapacity: _defaultCapacity,
-            maxSize:_maxSize
-            ) ;
+            maxSize: _maxSize
+            );
+    }
 
-        _prefab.GetComponent<Cube>();  
+    private void OnRelease(Cube cube)
+    {
+        cube.gameObject.SetActive(false);
+
+        cube.Destroyed -= ReturnCube;
     }
 
     private void Start()
     {
-        InvokeRepeating(nameof(Getobject), _time, _repeate);
+        StartCoroutine(Spawn(_repeate));
     }
 
-    private void ActionOnGet(GameObject obj)
+    private void OnDisable()
     {
-        obj.transform.position= GetPosition();
-        obj.GetComponent<Rigidbody>().velocity = Vector3.zero;
-        obj.SetActive(true);
+        _prefab.Destroyed -= ReturnCube;
     }
 
-    private void Getobject()
+    private void ReturnCube(Cube cube)
     {
-        _pool.Get();
+        _pool.Release(cube);
+    }
+
+    private void OnGet(Cube cube)
+    {
+        cube.Destroyed += ReturnCube;
+
+        cube.transform.position = GetPosition();
+
+        cube.SetDefaultColor();
+
+        if (cube.TryGetComponent<Rigidbody>(out Rigidbody rigidbody))
+        {
+            rigidbody.velocity = Vector3.zero;
+        }
+
+        cube.gameObject.SetActive(true);
     }
 
     private Vector3 GetPosition()
@@ -58,5 +75,17 @@ public class Spawner : MonoBehaviour
             );
 
         return randomPosition;
+    }
+
+    private IEnumerator Spawn(float time)
+    {
+        var delay = new WaitForSecondsRealtime(time);
+
+        while (true)
+        {
+            _pool.Get();
+            yield return delay;
+        }
+
     }
 }
