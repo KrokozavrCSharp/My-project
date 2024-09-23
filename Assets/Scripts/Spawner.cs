@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using UnityEngine;
 using UnityEngine.Pool;
@@ -28,26 +27,9 @@ public class Spawner : MonoBehaviour
             );
     }
 
-    private void OnRelease(Cube cube)
-    {
-        cube.gameObject.SetActive(false);
-
-        cube.Destroyed -= ReturnCube;
-    }
-
     private void Start()
     {
         StartCoroutine(Spawn(_repeate));
-    }
-
-    private void OnDisable()
-    {
-        _prefab.Destroyed -= ReturnCube;
-    }
-
-    private void ReturnCube(Cube cube)
-    {
-        _pool.Release(cube);
     }
 
     private void OnGet(Cube cube)
@@ -64,6 +46,18 @@ public class Spawner : MonoBehaviour
         }
 
         cube.gameObject.SetActive(true);
+    }
+
+    private void OnRelease(Cube cube)
+    {
+        cube.gameObject.SetActive(false);
+
+        cube.Destroyed -= ReturnCube;
+    }
+
+    private void ReturnCube(Cube cube)
+    {
+        _pool.Release(cube);
     }
 
     private Vector3 GetPosition()
@@ -86,6 +80,5 @@ public class Spawner : MonoBehaviour
             _pool.Get();
             yield return delay;
         }
-
     }
 }

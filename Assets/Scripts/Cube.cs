@@ -7,7 +7,6 @@ using UnityEngine;
 
 public class Cube : MonoBehaviour
 {
-    private Rigidbody _rigidbody;
     private Material _material;
     private bool _isTouch=false;
 
@@ -16,14 +15,11 @@ public class Cube : MonoBehaviour
     private void Awake()
     {
         _material = GetComponent<Renderer>().material;
-        _rigidbody = GetComponent<Rigidbody>();
     }
 
     private void OnCollisionEnter(Collision collision)
     {
-        string collisionObject = "Platforma";
-
-        if (collision.gameObject.tag== collisionObject && _isTouch==false)
+        if (collision.collider.TryGetComponent<Platforma>(out Platforma platforma) && _isTouch==false)
         {
             _isTouch = true;
             ChangeColor();
