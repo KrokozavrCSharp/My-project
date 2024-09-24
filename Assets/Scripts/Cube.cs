@@ -4,7 +4,6 @@ using UnityEngine;
 
 [RequireComponent(typeof(Rigidbody))]
 [RequireComponent(typeof(Renderer))]
-
 public class Cube : MonoBehaviour
 {
     private Material _material;
@@ -19,7 +18,7 @@ public class Cube : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.collider.TryGetComponent<Platforma>(out Platforma platforma) && _isTouch==false)
+        if (_isTouch == false && collision.collider.TryGetComponent<Platforma>(out Platforma triggerObject))
         {
             _isTouch = true;
             ChangeColor();
@@ -27,7 +26,7 @@ public class Cube : MonoBehaviour
         }
     }
 
-    public void SetDefaultColor()
+    private void SetDefaultColor()
     {
         _material.color = Color.white;
     }
@@ -51,5 +50,7 @@ public class Cube : MonoBehaviour
         Destroyed?.Invoke(this);
 
         _isTouch = false;
+
+        SetDefaultColor();
     }
 }

@@ -134,6 +134,7 @@ GameObject:
   - component: {fileID: 235553450}
   - component: {fileID: 235553449}
   - component: {fileID: 235553448}
+  - component: {fileID: 235553452}
   m_Layer: 0
   m_Name: Plane (2)
   m_TagString: Platforma
@@ -228,6 +229,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: -157.351, y: 177.039, z: -181.029}
+--- !u!114 &235553452
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 235553447}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c7faa86f4479c504f9cd9222e12e2f42, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &356945860
 GameObject:
   m_ObjectHideFlags: 0
@@ -240,6 +253,7 @@ GameObject:
   - component: {fileID: 356945863}
   - component: {fileID: 356945862}
   - component: {fileID: 356945861}
+  - component: {fileID: 356945865}
   m_Layer: 0
   m_Name: Plane (7)
   m_TagString: Platforma
@@ -334,6 +348,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: -156.262, y: 177.015, z: -180.968}
+--- !u!114 &356945865
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 356945860}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c7faa86f4479c504f9cd9222e12e2f42, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &631364084
 GameObject:
   m_ObjectHideFlags: 0
@@ -346,6 +372,7 @@ GameObject:
   - component: {fileID: 631364087}
   - component: {fileID: 631364086}
   - component: {fileID: 631364085}
+  - component: {fileID: 631364089}
   m_Layer: 0
   m_Name: Plane (4)
   m_TagString: Platforma
@@ -440,6 +467,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: -148.976, y: 176.811, z: -180.526}
+--- !u!114 &631364089
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 631364084}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c7faa86f4479c504f9cd9222e12e2f42, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &659601057
 GameObject:
   m_ObjectHideFlags: 0
@@ -452,6 +491,7 @@ GameObject:
   - component: {fileID: 659601060}
   - component: {fileID: 659601059}
   - component: {fileID: 659601058}
+  - component: {fileID: 659601062}
   m_Layer: 0
   m_Name: Plane
   m_TagString: Platforma
@@ -546,6 +586,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: -125.622, y: 175.305, z: -178.351}
+--- !u!114 &659601062
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 659601057}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c7faa86f4479c504f9cd9222e12e2f42, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &788620537
 GameObject:
   m_ObjectHideFlags: 0
@@ -558,6 +610,7 @@ GameObject:
   - component: {fileID: 788620540}
   - component: {fileID: 788620539}
   - component: {fileID: 788620538}
+  - component: {fileID: 788620542}
   m_Layer: 0
   m_Name: Plane (9)
   m_TagString: Platforma
@@ -652,6 +705,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: -157.351, y: 177.039, z: -181.029}
+--- !u!114 &788620542
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 788620537}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c7faa86f4479c504f9cd9222e12e2f42, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &826541881
 GameObject:
   m_ObjectHideFlags: 0
@@ -664,6 +729,7 @@ GameObject:
   - component: {fileID: 826541884}
   - component: {fileID: 826541883}
   - component: {fileID: 826541882}
+  - component: {fileID: 826541886}
   m_Layer: 0
   m_Name: Plane (5)
   m_TagString: Platforma
@@ -758,6 +824,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: -125.622, y: 175.305, z: -178.351}
+--- !u!114 &826541886
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 826541881}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c7faa86f4479c504f9cd9222e12e2f42, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &842368082
 GameObject:
   m_ObjectHideFlags: 0
@@ -770,6 +848,7 @@ GameObject:
   - component: {fileID: 842368085}
   - component: {fileID: 842368084}
   - component: {fileID: 842368083}
+  - component: {fileID: 842368087}
   m_Layer: 0
   m_Name: Plane (1)
   m_TagString: Platforma
@@ -864,6 +943,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: -156.262, y: 177.015, z: -180.968}
+--- !u!114 &842368087
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 842368082}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c7faa86f4479c504f9cd9222e12e2f42, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &938319971
 GameObject:
   m_ObjectHideFlags: 0
@@ -875,6 +966,7 @@ GameObject:
   - component: {fileID: 938319974}
   - component: {fileID: 938319973}
   - component: {fileID: 938319972}
+  - component: {fileID: 938319975}
   m_Layer: 0
   m_Name: Terrain
   m_TagString: Platforma
@@ -957,6 +1049,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &938319975
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 938319971}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c7faa86f4479c504f9cd9222e12e2f42, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &947574220
 GameObject:
   m_ObjectHideFlags: 0
@@ -1038,6 +1142,7 @@ GameObject:
   - component: {fileID: 1119322555}
   - component: {fileID: 1119322554}
   - component: {fileID: 1119322553}
+  - component: {fileID: 1119322557}
   m_Layer: 0
   m_Name: Plane (3)
   m_TagString: Platforma
@@ -1132,6 +1237,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: -148.976, y: 176.811, z: -180.526}
+--- !u!114 &1119322557
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1119322552}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c7faa86f4479c504f9cd9222e12e2f42, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1185602839
 GameObject:
   m_ObjectHideFlags: 0
@@ -1238,6 +1355,7 @@ GameObject:
   - component: {fileID: 1210523115}
   - component: {fileID: 1210523114}
   - component: {fileID: 1210523113}
+  - component: {fileID: 1210523117}
   m_Layer: 0
   m_Name: Plane (6)
   m_TagString: Platforma
@@ -1332,6 +1450,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: -156.262, y: 177.015, z: -180.968}
+--- !u!114 &1210523117
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1210523112}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c7faa86f4479c504f9cd9222e12e2f42, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1539366799
 GameObject:
   m_ObjectHideFlags: 0
@@ -1344,6 +1474,7 @@ GameObject:
   - component: {fileID: 1539366802}
   - component: {fileID: 1539366801}
   - component: {fileID: 1539366800}
+  - component: {fileID: 1539366804}
   m_Layer: 0
   m_Name: Plane (10)
   m_TagString: Platforma
@@ -1438,6 +1569,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: -157.351, y: 177.039, z: -181.029}
+--- !u!114 &1539366804
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1539366799}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c7faa86f4479c504f9cd9222e12e2f42, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1675761177
 GameObject:
   m_ObjectHideFlags: 0
@@ -1450,6 +1593,7 @@ GameObject:
   - component: {fileID: 1675761180}
   - component: {fileID: 1675761179}
   - component: {fileID: 1675761178}
+  - component: {fileID: 1675761182}
   m_Layer: 0
   m_Name: Plane (8)
   m_TagString: Platforma
@@ -1544,6 +1688,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: -157.351, y: 177.039, z: -181.029}
+--- !u!114 &1675761182
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1675761177}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c7faa86f4479c504f9cd9222e12e2f42, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1886593037
 GameObject:
   m_ObjectHideFlags: 0
@@ -1603,7 +1759,7 @@ Camera:
     height: 1.05
   near clip plane: 0.01
   far clip plane: 1000.38
-  field of view: 139
+  field of view: 84
   orthographic: 0
   orthographic size: 5
   m_Depth: -1
@@ -1629,26 +1785,26 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1886593037}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.484116, y: 0.5260011, z: -0.48087493, w: 0.5076554}
-  m_LocalPosition: {x: 19.97, y: 14.42, z: 28.99}
+  m_LocalRotation: {x: 0.35642496, y: 0.011030968, z: 0.0012283194, w: 0.93425804}
+  m_LocalPosition: {x: 25.4, y: 17.5, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 94.125, y: 287.885, z: 197.019}
+  m_LocalEulerAnglesHint: {x: 138.244, y: 181.651, z: 180.78}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 1185602841}
   - {fileID: 1886593040}
+  - {fileID: 235553451}
   - {fileID: 938319974}
   - {fileID: 659601061}
   - {fileID: 826541885}
   - {fileID: 842368086}
   - {fileID: 1210523116}
   - {fileID: 356945864}
-  - {fileID: 235553451}
   - {fileID: 1675761181}
   - {fileID: 788620541}
   - {fileID: 1539366803}

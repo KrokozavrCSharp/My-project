@@ -38,8 +38,6 @@ public class Spawner : MonoBehaviour
 
         cube.transform.position = GetPosition();
 
-        cube.SetDefaultColor();
-
         if (cube.TryGetComponent<Rigidbody>(out Rigidbody rigidbody))
         {
             rigidbody.velocity = Vector3.zero;
