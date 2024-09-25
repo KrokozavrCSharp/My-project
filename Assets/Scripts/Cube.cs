@@ -7,21 +7,24 @@ using UnityEngine;
 public class Cube : MonoBehaviour
 {
     private Material _material;
+    private Rigidbody _rigidbody;
     private bool _isTouch=false;
 
     public event Action<Cube> Destroyed;
+    public event Action<Cube> Touched;
 
     private void Awake()
     {
         _material = GetComponent<Renderer>().material;
+        _rigidbody = GetComponent<Rigidbody>();
     }
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (_isTouch == false && collision.collider.TryGetComponent<Platforma>(out Platforma triggerObject))
+        if (_isTouch == false && collision.collider.TryGetComponent(out Platforma _))
         {
             _isTouch = true;
-            ChangeColor();
+            Touched?.Invoke(this);
             StartCoroutine(Destroing());
         }
     }
@@ -31,11 +34,6 @@ public class Cube : MonoBehaviour
         _material.color = Color.white;
     }
 
-    private void ChangeColor()
-    {
-        _material.color = UnityEngine.Random.ColorHSV();
-    }
-
     private  IEnumerator Destroing()
     {
         int minNumber = 5;
@@ -43,14 +41,19 @@ public class Cube : MonoBehaviour
 
         int delay = UnityEngine.Random.Range(minNumber, maxNumber);
 
-        var waitForSeconds = new WaitForSeconds(delay);
-
-        yield return waitForSeconds;
+        yield return new WaitForSeconds(delay);
 
         Destroyed?.Invoke(this);
 
-        _isTouch = false;
+        ResetState();
+    }
 
+    private void ResetState()
+    {
         SetDefaultColor();
+
+        _rigidbody.velocity = Vector3.zero;
+
+        _isTouch = false;
     }
 }

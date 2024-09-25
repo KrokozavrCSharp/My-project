@@ -38,11 +38,6 @@ public class Spawner : MonoBehaviour
 
         cube.transform.position = GetPosition();
 
-        if (cube.TryGetComponent<Rigidbody>(out Rigidbody rigidbody))
-        {
-            rigidbody.velocity = Vector3.zero;
-        }
-
         cube.gameObject.SetActive(true);
     }
 
