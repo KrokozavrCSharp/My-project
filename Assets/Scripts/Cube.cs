@@ -8,15 +8,19 @@ public class Cube : MonoBehaviour
 {
     private Material _material;
     private Rigidbody _rigidbody;
+    private ChangerColor _changeColor;
     private bool _isTouch=false;
 
     public event Action<Cube> Destroyed;
     public event Action<Cube> Touched;
 
+    public bool IsTouch=>_isTouch;
+
     private void Awake()
     {
         _material = GetComponent<Renderer>().material;
         _rigidbody = GetComponent<Rigidbody>();
+        _changeColor= GetComponent<ChangerColor>();
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -25,14 +29,10 @@ public class Cube : MonoBehaviour
         {
             _isTouch = true;
             Touched?.Invoke(this);
+            _changeColor.ChangeColor();
             StartCoroutine(Destroing());
         }
-    }
-
-    private void SetDefaultColor()
-    {
-        _material.color = Color.white;
-    }
+    } 
 
     private  IEnumerator Destroing()
     {
@@ -50,7 +50,7 @@ public class Cube : MonoBehaviour
 
     private void ResetState()
     {
-        SetDefaultColor();
+        _changeColor.SetDefaultColor();
 
         _rigidbody.velocity = Vector3.zero;
 

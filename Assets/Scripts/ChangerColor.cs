@@ -2,21 +2,21 @@ using UnityEngine;
 
 public class ChangerColor : MonoBehaviour
 {
-    [SerializeField]private Cube cube;
+    private Renderer _renderer;
 
-    private void OnEnable()
+    private void Awake()
     {
-        cube.Touched += ChangeColor;
+        if (gameObject.TryGetComponent(out Renderer renderer))
+            _renderer = renderer;
     }
 
-    private void OnDisable()
+    public void SetDefaultColor()
     {
-        cube.Touched -= ChangeColor;
+        _renderer.material.color = Color.white;
     }
 
-    private void ChangeColor(Cube cube)
+    public void ChangeColor()
     {
-        if (cube.TryGetComponent(out Renderer material))
-            material.material.color = UnityEngine.Random.ColorHSV();
+            _renderer.material.color = UnityEngine.Random.ColorHSV();
     }
 }

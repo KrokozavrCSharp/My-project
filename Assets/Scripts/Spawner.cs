@@ -20,7 +20,7 @@ public class Spawner : MonoBehaviour
             createFunc: () => Instantiate(_prefab),
             actionOnGet: (cube) => OnGet(cube),
             actionOnRelease: (cube) => OnRelease(cube),
-            actionOnDestroy: (cube) => Destroy(cube),
+            actionOnDestroy: (cube) => Destroy(cube.gameObject),
             collectionCheck: true,
             defaultCapacity: _defaultCapacity,
             maxSize: _maxSize
@@ -36,7 +36,7 @@ public class Spawner : MonoBehaviour
     {
         cube.Destroyed += ReturnCube;
 
-        cube.transform.position = GetPosition();
+        cube.transform.position = GetPositionSpawn();
 
         cube.gameObject.SetActive(true);
     }
@@ -53,7 +53,7 @@ public class Spawner : MonoBehaviour
         _pool.Release(cube);
     }
 
-    private Vector3 GetPosition()
+    private Vector3 GetPositionSpawn()
     {
         Vector3 randomPosition = new Vector3(
             UnityEngine.Random.Range(_minPosition.x, _maxPosition.x),
