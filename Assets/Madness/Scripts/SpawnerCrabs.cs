@@ -1,12 +1,11 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Pool;
 
 public class SpawnerCrabs : MonoBehaviour
 {
-    [SerializeField] Crab _enemy;
-    [SerializeField] float _time;
+    [SerializeField] private Crab _enemy;
+    [SerializeField] private float _time;
 
     private int _defaultCapacity = 25;
     private int _maxSize = 3;
@@ -29,17 +28,6 @@ public class SpawnerCrabs : MonoBehaviour
     private void Start()
     {
         StartCoroutine(Spawn(_time));
-    }
-
-    private Vector3 GetPositionSpawn()
-    {
-        Vector3 randomPosition = gameObject.transform.position; /*new Vector3(
-            UnityEngine.Random.Range(_minPosition.x, _maxPosition.x),
-            _maxPosition.y,
-            UnityEngine.Random.Range(_minPosition.z, _maxPosition.z)
-            );*/
-
-        return randomPosition;
     }
 
     private void OnGet(Crab crab)
