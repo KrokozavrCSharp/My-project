@@ -17,7 +17,7 @@ public class SpawnerCrabs : MonoBehaviour
         _pool = new ObjectPool<Crab>(
               createFunc: () => Instantiate(_enemy),
             actionOnGet: (crab) => OnGet(crab),
-            actionOnRelease: (crab) => OnRelease(crab),
+            actionOnRelease: (crab) => crab.gameObject.SetActive(false),
             actionOnDestroy: (crab) => Destroy(crab.gameObject),
             collectionCheck: true,
             defaultCapacity: _defaultCapacity,
@@ -30,33 +30,22 @@ public class SpawnerCrabs : MonoBehaviour
         StartCoroutine(Spawn(_time));
     }
 
-    private void OnGet(Crab crab)
-    {
-        crab.transform.position = gameObject.transform.position;
-        SetDirection();
-        crab.gameObject.SetActive( true );
-    }
-
-    private void OnRelease(Crab crab)
-    {
-        crab.gameObject.SetActive(false);
-
-        ReturnCube(crab);
-    }
-
-    private void SetDirection()
+    public Vector3 SetDirection()
     {
         float permamentdirection = 0;
         float minPosition = 0;
         float maxPosition = 361;
         float positionY = UnityEngine.Random.Range(minPosition, maxPosition);
 
-        _enemy.transform.rotation *= Quaternion.Euler(permamentdirection, positionY, permamentdirection);
+        Vector3 direction = new Vector3(permamentdirection, positionY, permamentdirection);
+
+        return direction;
     }
 
-    private void ReturnCube(Crab crab)
+    private void OnGet(Crab crab)
     {
-        _pool.Release(crab);
+        crab.transform.position = gameObject.transform.position;
+        crab.gameObject.SetActive(true);
     }
 
     private IEnumerator Spawn(float time)

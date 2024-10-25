@@ -114,6 +114,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1c9f97efd8c8e5743a73e618468d71b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _spawner: {fileID: 7288061870693186477, guid: 3dceae34d64aba248afa975e707f5399, type: 3}
 --- !u!54 &1974078692368287405
 Rigidbody:
   m_ObjectHideFlags: 0
