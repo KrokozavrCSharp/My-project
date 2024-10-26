@@ -10,7 +10,7 @@ public class SpawnerCrabs : MonoBehaviour
     private int _defaultCapacity = 25;
     private int _maxSize = 3;
 
-    private ObjectPool <Crab> _pool;
+    private ObjectPool<Crab> _pool;
 
     private void Awake()
     {
@@ -30,22 +30,25 @@ public class SpawnerCrabs : MonoBehaviour
         StartCoroutine(Spawn(_time));
     }
 
-    public Vector3 SetDirection()
+    private Vector3 GetDirection()
     {
         float permamentdirection = 0;
         float minPosition = 0;
         float maxPosition = 361;
         float positionY = UnityEngine.Random.Range(minPosition, maxPosition);
 
-        Vector3 direction = new Vector3(permamentdirection, positionY, permamentdirection);
-
-        return direction;
+        return new Vector3(permamentdirection, positionY, permamentdirection);
     }
 
     private void OnGet(Crab crab)
     {
         crab.transform.position = gameObject.transform.position;
         crab.gameObject.SetActive(true);
+
+        if (crab.TryGetComponent<Crab>(out crab))
+        {
+            crab.Initialize(GetDirection());
+        }
     }
 
     private IEnumerator Spawn(float time)
