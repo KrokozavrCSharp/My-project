@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class Mover : MonoBehaviour
 {
-    private float _speed = 2;
+    private float _speed = 1.5f;
 
     private void Update()
     {
@@ -11,6 +11,6 @@ public class Mover : MonoBehaviour
 
     private void MoveForward()
     {
-        transform.position += (transform.forward * Time.deltaTime * _speed);
+        transform.position += transform.forward * Time.deltaTime * _speed;
     }
 }

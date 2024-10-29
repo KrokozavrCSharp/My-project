@@ -34,10 +34,13 @@ public class SpawnerCrabs : MonoBehaviour
     {
         float permamentdirection = 0;
         float minPosition = 0;
-        float maxPosition = 361;
-        float positionY = UnityEngine.Random.Range(minPosition, maxPosition);
+        float maxPosition = 360;
+        float positionZ = UnityEngine.Random.Range(minPosition, maxPosition);
+        float positionX = UnityEngine.Random.Range(minPosition, maxPosition);
 
-        return new Vector3(permamentdirection, positionY, permamentdirection);
+        Vector3 direction = new Vector3(positionX, permamentdirection, positionZ);
+
+        return direction;
     }
 
     private void OnGet(Crab crab)
