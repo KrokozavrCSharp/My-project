@@ -2,15 +2,19 @@ using UnityEngine;
 
 public class Mover : MonoBehaviour
 {
-    private float _speed = 1.5f;
+    [SerializeField] private Transform[] _waypoints;
+    [SerializeField] private float _speed;
+
+    private int _currentWaypoint = 0;
 
     private void Update()
     {
-        MoveForward();
-    }
+        if (transform.position == _waypoints[_currentWaypoint].position)
+        {
+            _currentWaypoint=(_currentWaypoint+1)% _waypoints.Length;
+        }
 
-    private void MoveForward()
-    {
-        transform.position += transform.forward * Time.deltaTime * _speed;
+        transform.LookAt(_waypoints[_currentWaypoint]);
+        transform.position=Vector3.MoveTowards(transform.position, _waypoints[_currentWaypoint].position,_speed*Time.deltaTime);
     }
 }
