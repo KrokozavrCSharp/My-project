@@ -2,19 +2,19 @@ using UnityEngine;
 
 public class Mover : MonoBehaviour
 {
-    [SerializeField] private Transform[] _waypoints;
+    [SerializeField] private Transform[] _direction;
     [SerializeField] private float _speed;
 
-    private int _currentWaypoint = 0;
+    private int _indexDirection = 0;
 
     private void Update()
     {
-        if (transform.position == _waypoints[_currentWaypoint].position)
+        if (transform.position == _direction[_indexDirection].position)
         {
-            _currentWaypoint=(_currentWaypoint+1)% _waypoints.Length;
+            _indexDirection=(_indexDirection+1)% _direction.Length;
         }
 
-        transform.LookAt(_waypoints[_currentWaypoint]);
-        transform.position=Vector3.MoveTowards(transform.position, _waypoints[_currentWaypoint].position,_speed*Time.deltaTime);
+        transform.LookAt(_direction[_indexDirection]);
+        transform.position=Vector3.MoveTowards(transform.position, _direction[_indexDirection].position,_speed*Time.deltaTime);
     }
 }

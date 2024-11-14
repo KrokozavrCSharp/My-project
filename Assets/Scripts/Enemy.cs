@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.AI;
 
 [RequireComponent(typeof(Rigidbody))]
+[RequireComponent (typeof(NavMeshAgent))]
 public class Enemy : MonoBehaviour
 {
     private GameObject _target;

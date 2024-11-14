@@ -34,12 +34,10 @@ public class SpawnerEnemy : MonoBehaviour
     private void OnGet(Enemy enemy)
     {
         enemy.transform.position = gameObject.transform.position;
-        enemy.gameObject.SetActive(true);
 
-        if (enemy.TryGetComponent<Enemy>(out enemy))
-        {
-            enemy.Initialize(_target);
-        }
+        enemy.gameObject.SetActive(true);
+        
+        enemy.Initialize(_target);    
     }
 
     private IEnumerator Spawn(float time)
