@@ -5,7 +5,7 @@ using UnityEngine.Pool;
 public class SpawnerEnemy : MonoBehaviour
 {
     [SerializeField] private Enemy _enemy;
-    [SerializeField] private GameObject _target;
+    [SerializeField] private Mover _target;
     [SerializeField] private float _time;
 
     private int _defaultCapacity = 25;
@@ -33,7 +33,7 @@ public class SpawnerEnemy : MonoBehaviour
 
     private void OnGet(Enemy enemy)
     {
-        enemy.transform.position = gameObject.transform.position;
+        enemy.transform.position = transform.position;
 
         enemy.gameObject.SetActive(true);
         

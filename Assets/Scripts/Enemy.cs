@@ -5,11 +5,11 @@ using UnityEngine.AI;
 [RequireComponent (typeof(NavMeshAgent))]
 public class Enemy : MonoBehaviour
 {
-    private GameObject _target;
+    private Mover _target;
 
     private NavMeshAgent _agent;
 
-    private void Start()
+    private void Awake()
     {
         _agent = GetComponent<NavMeshAgent>();
     }
@@ -19,7 +19,7 @@ public class Enemy : MonoBehaviour
         _agent.SetDestination(_target.transform.position);
     }
 
-    public void Initialize(GameObject target)
+    public void Initialize(Mover target)
     {
         _target = target;
     }
