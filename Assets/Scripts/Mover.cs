@@ -2,19 +2,24 @@ using UnityEngine;
 
 public class Mover : MonoBehaviour
 {
-    [SerializeField] private Transform[] _way;
     [SerializeField] private float _speed;
+    [SerializeField] private Transform[] _way;
 
     private int _position = 0;
 
-    private void Update()
+    public void Update()
+    {
+        Move();
+    }
+
+    private void Move()
     {
         if (transform.position == _way[_position].position)
         {
-            _position=(_position+1)% _way.Length;
+            _position = (_position + 1) % _way.Length;
         }
 
         transform.LookAt(_way[_position]);
-        transform.position=Vector3.MoveTowards(transform.position, _way[_position].position,_speed*Time.deltaTime);
+        transform.position = Vector3.MoveTowards(transform.position, _way[_position].position, _speed * Time.deltaTime);
     }
 }
