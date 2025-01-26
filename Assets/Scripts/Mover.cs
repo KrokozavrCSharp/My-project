@@ -2,24 +2,30 @@ using UnityEngine;
 
 public class Mover : MonoBehaviour
 {
-    [SerializeField] private float _speed;
-    [SerializeField] private Transform[] _way;
+    private const string Horizontal = nameof(Horizontal);
+    private const string Vertical = nameof(Vertical);
 
-    private int _position = 0;
+    private float _speedMove = 0.5f;
+    private float _speedRotate = 30.5f;
 
     public void Update()
     {
+        Rotate();
         Move();
     }
 
     private void Move()
     {
-        if (transform.position == _way[_position].position)
-        {
-            _position = (_position + 1) % _way.Length;
-        }
+        float direction = Input.GetAxis(Vertical);
+        float distance = direction * _speedMove * Time.deltaTime;
 
-        transform.LookAt(_way[_position]);
-        transform.position = Vector3.MoveTowards(transform.position, _way[_position].position, _speed * Time.deltaTime);
+        transform.Translate(distance * Vector3.forward);
+    }
+
+    private void Rotate()
+    {
+        float rotation = Input.GetAxis(Horizontal);
+
+        transform.Rotate(rotation * Vector3.up * _speedRotate * Time.deltaTime);
     }
 }
