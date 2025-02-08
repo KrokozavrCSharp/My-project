@@ -1,51 +1,50 @@
+using System.Collections;
 using UnityEngine;
 
 public class AlarmSystem : MonoBehaviour
 {
     [SerializeField] private AudioSource _audioAlarm;
 
-    private float volumeMax = 40f;
-    private float volumeMin = 0f;
-    private float nextStep = 0.1f;
+    private float _volumeMax = 1f;
+    private float _volumeMin = 0f;
+    private float _nextStep = 0.5f;
+    private float _delay = 0.1f;
 
-    private bool _isEnter = false;
+    private Coroutine _volumeChange;
 
-    private void Awake()
+    public void IncreaseVolume()
     {
-        _audioAlarm.volume = 0;
+        _audioAlarm.Play();
+        StartVolumeChange(_volumeMax);
     }
 
-    private void Update()
+    public void ReduceVolume()
     {
-        if (_isEnter)
+        StartVolumeChange(_volumeMin);
+    }
+
+    private void StartVolumeChange(float targetVolume)
+    {
+        if (_volumeChange != null)
         {
-            _audioAlarm.volume = Mathf.MoveTowards(_audioAlarm.volume, volumeMax, nextStep*Time.deltaTime);
-            _audioAlarm.PlayOneShot(_audioAlarm.clip, _audioAlarm.volume);
+            StopCoroutine(_volumeChange);
         }
-        else if(_isEnter==false && _audioAlarm.volume > 0)
+
+        _volumeChange = StartCoroutine(ChangeVolume(targetVolume));
+    }
+
+    private IEnumerator ChangeVolume(float targetVolume)
+    {
+        while (Mathf.Approximately(_audioAlarm.volume, targetVolume) == false)
         {
-            _audioAlarm.volume = Mathf.MoveTowards(_audioAlarm.volume, volumeMin, nextStep * Time.deltaTime);
-            _audioAlarm.PlayOneShot(_audioAlarm.clip, _audioAlarm.volume);
+            _audioAlarm.volume = Mathf.MoveTowards(_audioAlarm.volume, targetVolume, _nextStep * Time.deltaTime);
+
+            yield return new WaitForSeconds(_delay);
         }
-        else
+
+        if (_audioAlarm.isPlaying && _audioAlarm.volume <= 0)
         {
             _audioAlarm.Stop();
-        }
-    }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.GetComponent<Thief>())
-        {
-            _isEnter = true;
-        }
-    }
-
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.GetComponent<Thief>())
-        {
-            _isEnter = false;
         }
     }
 }
